@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label id="description">Description</label>
-                                        <textarea type="text" name="description"    class="form-control" >{{$category->description}}</textarea>
+                                        <textarea type="text" name="description" style="resize: none"    class="form-control" >{{$category->description}}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label id="status">Status</label>

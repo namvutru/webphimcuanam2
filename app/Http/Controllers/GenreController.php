@@ -42,8 +42,8 @@ class GenreController extends Controller
 
         $data = $request->all();
         $genre = new Genre();
-        $genre->title=  $data['title'];
-        $genre->slug=  $data['slug'];
+        $genre->title=$data['title'];
+        $genre->slug=$data['slug'];
         $genre->description=$data['description'];
         $genre->status=$data['status'];
         $genre->save();

@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label id="description">Description</label>
-                                    <textarea type="text" name="description"   id="description" class="form-control" >{{$country->description}}</textarea>
+                                    <textarea type="text" name="description"  style="resize: none"  id="description" class="form-control" >{{$country->description}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label id="status">Status</label>
