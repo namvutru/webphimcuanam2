@@ -58,6 +58,14 @@
 
                                 </div>
                                 <div class="form-group">
+                                    <label id="status">Hot Movie</label>
+                                    <select class="form-select" name="phimhot" aria-label="Default select example">
+                                        <option value="0" selected >Normal</option>
+                                        <option value="1">Hot</option>
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label id="status">Status</label>
                                     <select class="form-select" name="status" aria-label="Default select example">
                                         <option value="1">Hiển thị</option>
@@ -128,6 +136,19 @@
                                         @endforeach
                                     </select>
 
+                                </div>
+                                <div class="form-group">
+                                    <label id="status">Hot Movie</label>
+                                    <select class="form-select" name="phimhot" aria-label="Default select example">
+                                        @if($movie->phimhot == 1)
+                                            <option value="1" selected >Hot</option>
+                                            <option value="0">Normal</option>
+
+                                        @else
+                                            <option value="1">Hot</option>
+                                            <option value="0" selected >Normal</option>
+                                        @endif
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label id="status">Status</label>

@@ -25,6 +25,7 @@
                                 <th scope="col">Category</th>
                                 <th scope="col">Genre</th>
                                 <th scope="col">Country</th>
+                                <th scope="col">Hot Movie</th>
                                 <th scope="col">Show?</th>
                                 <th scope="col">Manage</th>
                             </tr>
@@ -41,6 +42,12 @@
                                     <td>{{$movi->category->title}}</td>
                                     <td>{{$movi->genre->title}}</td>
                                     <td>{{$movi->country->title}}</td>
+                                    @if($movi->phimhot==1)
+                                        <td>Hot</td>
+                                    @else
+                                        <td>Normal</td>
+                                    @endif
+
                                     @if($movi->status==1)
                                         <td>Hiển thị</td>
                                     @else
