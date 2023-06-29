@@ -13,12 +13,18 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" ></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
     <!-- Scripts -->
 {{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
 
+    <link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
     <!-- Styles -->
 {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
@@ -88,7 +94,12 @@
             @yield('content')
         </main>
     </div>
+
     <script type="text/javascript">
+        $(document).ready( function () {
+            $('#tablephim').DataTable();
+        } );
+
 
         function ChangeToSlug()
         {
@@ -123,6 +134,29 @@
             document.getElementById('convert_slug').value = slug;
         }
 
+    </script>
+    <script type="text/javascript">
+        $('.order_position').sortable({
+            placeholder: 'ui-state-highlight',
+            update: function (event,ui){
+                var array_id = [];
+                $('.order_position tr').each(function(){
+                    array_id.push( $(this).attr('id') );
+                })
+                // alert(array_id);
+                $.ajax({
+                   headers :{
+                       'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                     },
+                    url:"{{route('resorting')}}",
+                    method:"POST",
+                    data:{array_id:array_id},
+                    success:function(data){
+                    alert('sắp sếp thứ tự thành công');
+                }
+                })
+            }
+        })
     </script>
 </body>
 </html>
