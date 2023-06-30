@@ -66,6 +66,15 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label id="status">Resolution</label>
+                                    <select class="form-select" name="resolution" aria-label="Default select example">
+                                        <option value="0" selected >HD</option>
+                                        <option value="1">SD</option>
+                                        <option value="2"  >CAM</option>
+                                        <option value="3">Full HD</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label id="status">Status</label>
                                     <select class="form-select" name="status" aria-label="Default select example">
                                         <option value="1">Hiển thị</option>
@@ -149,6 +158,36 @@
                                             <option value="0" selected >Normal</option>
                                         @endif
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label id="status">Status</label>
+                                    <select class="form-select" name="resolution" aria-label="Default select example">
+
+                                        @if($movie->resolution==0)
+                                            <option value="0" selected >HD</option>
+                                            <option value="1">SD</option>
+                                            <option value="2"  >CAM</option>
+                                            <option value="3">Full HD</option>
+                                        @elseif($movie->resolution==1)
+                                            <option value="0"  >HD</option>
+                                            <option value="1"selected>SD</option>
+                                            <option value="2"  >CAM</option>
+                                            <option value="3">Full HD</option>
+                                        @elseif($movie->resolution==2)
+                                            <option value="0"  >HD</option>
+                                            <option value="1">SD</option>
+                                            <option value="2" selected >CAM</option>
+                                            <option value="3">Full HD</option>
+                                        @else
+                                            <option value="0"  >HD</option>
+                                            <option value="1">SD</option>
+                                            <option value="2"  >CAM</option>
+                                            <option value="3"selected>Full HD</option>
+                                        @endif
+                                    </select>
+
+
+
                                 </div>
                                 <div class="form-group">
                                     <label id="status">Status</label>

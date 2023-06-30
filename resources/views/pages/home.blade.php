@@ -47,7 +47,18 @@
                 <div class="halim-item">
                     <a class="halim-thumb" href="{{route('movie',$phimh->slug)}}" title="{{$phimh->title}}">
                         <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$phimh->image)}}" alt="Image Phim" title="Image Phim"></figure>
-                        <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> <div class="icon_overlay"></div>
+                        <span class="status">
+                             @if($phimh->resolution==0)
+                                HD
+                            @elseif($phimh->resolution==1)
+                                SD
+                            @elseif($phimh->resolution==2)
+                                CAM
+                            @else
+                                Full HD
+                            @endif
+                        </span>
+                        <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> <div class="icon_overlay"></div>
                         <div class="halim-post-title-box">
                             <div class="halim-post-title ">
                                 <p class="entry-title">{{$phimh->title}}</p>
@@ -77,7 +88,17 @@
                     <div class="halim-item">
                         <a class="halim-thumb" href="{{route('movie',$movi->slug)}}">
                             <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$movi->image)}}" alt="{{$movi->title}}" title="{{$movi->title}}"></figure>
-                            <span class="status">TẬP 15</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span>
+                            <span class="status">
+                                  @if($phimh->resolution==0)
+                                    HD
+                                @elseif($phimh->resolution==1)
+                                    SD
+                                @elseif($phimh->resolution==2)
+                                    CAM
+                                @else
+                                    Full HD
+                                @endif
+                            </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span>
                             <div class="icon_overlay"></div>
                             <div class="halim-post-title-box">
                                 <div class="halim-post-title ">

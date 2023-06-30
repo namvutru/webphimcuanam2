@@ -24,7 +24,17 @@
                             <div class="halim-item">
                                 <a class="halim-thumb" href="{{route('movie',$movi->slug)}}" title="{{$movi->title}}">
                                     <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$movi->image)}}" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
-                                    <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span>
+                                    <span class="status">
+                                        @if($movi->resolution==0)
+                                            HD
+                                        @elseif($movi->resolution==1)
+                                            SD
+                                        @elseif($movi->resolution==2)
+                                            CAM
+                                        @else
+                                            Full HD
+                                        @endif
+                                    </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span>
                                     <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
                                         <div class="halim-post-title ">

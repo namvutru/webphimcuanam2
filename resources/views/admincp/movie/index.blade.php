@@ -26,6 +26,7 @@
                                 <th scope="col">Genre</th>
                                 <th scope="col">Country</th>
                                 <th scope="col">Hot Movie</th>
+                                <th scope="col">Resolution</th>
                                 <th scope="col">Show?</th>
                                 <th scope="col">Manage</th>
                             </tr>
@@ -47,6 +48,19 @@
                                     @else
                                         <td>Normal</td>
                                     @endif
+
+                                    @if($movi->resolution==0)
+                                            <td>HD</td>
+                                    @elseif($movi->resolution==1)
+                                        <td>SD</td>
+                                    @elseif($movi->resolution==2)
+                                        <td>CAM</td>
+                                    @else
+                                        <td>Full HD</td>
+                                    @endif
+
+
+
 
                                     @if($movi->status==1)
                                         <td>Hiển thị</td>

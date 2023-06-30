@@ -57,6 +57,7 @@ class MovieController extends Controller
         $movie->genre_id=$data['genre'];
         $movie->country_id=$data['country'];
         $movie->phimhot= $data['phimhot'];
+        $movie->resolution= $data['resolution'];
 
         $get_image = $request->file('image');
         $path = 'uploads/movie/';
@@ -125,7 +126,7 @@ class MovieController extends Controller
         $movie->genre_id=$data['genre'];
         $movie->country_id=$data['country'];
         $movie->phimhot= $data['phimhot'];
-
+        $movie->resolution= $data['resolution'];
         $get_image = $request->file('image');
         $path = 'uploads/movie/';
         if($get_image){
