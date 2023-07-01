@@ -31,7 +31,8 @@ Route::get('/phim/{slug}',[IndexController::class, 'movie'])->name('movie');
 Route::get('/xem-phim',[IndexController::class, 'watch'])->name('watch');
 Route::get('/tap-phim',[IndexController::class, 'episode'])->name('episode');
 Route::get('/update-year-phim',[MovieController::class,'update_year']);
-Route::get('/nam/{x}',[IndexController::class,'year']);
+Route::get('/nam/{year}',[IndexController::class,'year']);
+Route::get('/tag/{tag}',[IndexController::class,'tag']);
 
 
 

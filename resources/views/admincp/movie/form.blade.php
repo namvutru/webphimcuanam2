@@ -41,6 +41,10 @@
                                     <textarea type="text" name="description" style="resize: none" id="description" class="form-control" ></textarea>
                                 </div>
                                 <div class="form-group">
+                                    <label id="tags">Tags</label>
+                                    <textarea type="text" name="tags" style="resize: none"  class="form-control" ></textarea>
+                                </div>
+                                <div class="form-group">
                                     <label >Category</label>
                                     <select name="category" class="form-control">
                                         @foreach($category as $key => $cate)
@@ -132,6 +136,10 @@
                                 <div class="form-group">
                                     <label id="description">Description</label>
                                     <textarea type="text" name="description"  style="resize: none"  id="description" class="form-control" >{{$movie->description}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label id="tags">Tags</label>
+                                    <textarea type="text" name="tags" style="resize: none"  class="form-control" >{{$movie->tags}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label >Category</label>

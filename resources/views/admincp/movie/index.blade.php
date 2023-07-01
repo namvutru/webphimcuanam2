@@ -23,6 +23,8 @@
                                 <th scope="col">Duration</th>
                                 <th scope="col">Slug</th>
                                 <th scope="col">Image</th>
+                                <th scope="col">Tags</th>
+
                                 {{--                                <th scope="col">Description</th>--}}
                                 <th scope="col">Category</th>
                                 <th scope="col">Genre</th>
@@ -49,6 +51,7 @@
                                     <td>{{$movi->slug}}</td>
                                     <td><img width="60"  src="{{asset('/uploads/movie/'.$movi->image)}}"/></td>
                                     {{--                                    <td>{{$movi->description}}</td>--}}
+                                    <td>{{$movi->tags}}</td>
                                     <td>{{$movi->category->title}}</td>
                                     <td>{{$movi->genre->title}}</td>
                                     <td>{{$movi->country->title}}</td>

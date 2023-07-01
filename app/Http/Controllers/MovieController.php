@@ -62,6 +62,7 @@ class MovieController extends Controller
         $movie->resolution= $data['resolution'];
         $movie->subtitle = $data['subtitle'];
         $movie->duration= $data['duration'];
+        $movie->tags= $data['tags'];
         $movie->datecreate = Carbon::now('Asia/Ho_Chi_Minh');
         $movie->dateupdate = Carbon::now('Asia/Ho_Chi_Minh');
         $get_image = $request->file('image');
@@ -135,6 +136,7 @@ class MovieController extends Controller
         $movie->resolution= $data['resolution'];
         $movie->subtitle = $data['subtitle'];
         $movie->duration= $data['duration'];
+        $movie->tags= $data['tags'];
         $movie->dateupdate = Carbon::now('Asia/Ho_Chi_Minh');
 
         $get_image = $request->file('image');
@@ -177,4 +179,5 @@ class MovieController extends Controller
         $movie->year = $data['year'];
         $movie->save();
     }
+
 }
