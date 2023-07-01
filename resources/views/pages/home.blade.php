@@ -58,11 +58,17 @@
                                 Full HD
                             @endif
                         </span>
-                        <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> <div class="icon_overlay"></div>
+                        <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                            @if($phimh->subtitle==1)
+                                Thuyết minh
+                            @else
+                                Phụ đề
+                            @endif
+                        </span> <div class="icon_overlay"></div>
                         <div class="halim-post-title-box">
                             <div class="halim-post-title ">
                                 <p class="entry-title">{{$phimh->title}}</p>
-                                <p class="original_title">{{$phimh->title}}</p>
+                                <p class="original_title">{{$phimh->origintitle}}</p>
                             </div>
                         </div>
                     </a>
@@ -89,21 +95,27 @@
                         <a class="halim-thumb" href="{{route('movie',$movi->slug)}}">
                             <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$movi->image)}}" alt="{{$movi->title}}" title="{{$movi->title}}"></figure>
                             <span class="status">
-                                  @if($phimh->resolution==0)
+                                  @if($movi->resolution==0)
                                     HD
-                                @elseif($phimh->resolution==1)
+                                @elseif($movi->resolution==1)
                                     SD
-                                @elseif($phimh->resolution==2)
+                                @elseif($movi->resolution==2)
                                     CAM
                                 @else
                                     Full HD
                                 @endif
-                            </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span>
+                            </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                            @if($movi->subtitle==1)
+                                    Thuyết minh
+                                @else
+                                    Phụ đề
+                                @endif
+                            </span>
                             <div class="icon_overlay"></div>
                             <div class="halim-post-title-box">
                                 <div class="halim-post-title ">
                                     <p class="entry-title">"{{$movi->title}}"</p>
-                                    <p class="original_title">"{{$movi->title}}"</p>
+                                    <p class="original_title">"{{$movi->origintitle}}"</p>
                                 </div>
                             </div>
                         </a>

@@ -94,6 +94,23 @@
             @yield('content')
         </main>
     </div>
+    <script type="text/javascript">
+        $('.select-year').change(function(){
+            var year = $(this).find(':selected').val();
+            var id = $(this).attr('id');
+            // alert(year);
+            // alert(id);
+            $.ajax({
+                url:"{{url('/update-year-phim')}}",
+                method:"GET",
+                data:{year:year,id:id},
+                success:function(data){
+                    alert('thay đổi năm phim thành công'+ year);
+                }
+
+            });
+        })
+    </script>
 
     <script type="text/javascript">
         $(document).ready( function () {

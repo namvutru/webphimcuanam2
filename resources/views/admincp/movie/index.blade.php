@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -19,6 +19,8 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
+                                <th scope="col">Origin Title</th>
+                                <th scope="col">Duration</th>
                                 <th scope="col">Slug</th>
                                 <th scope="col">Image</th>
                                 {{--                                <th scope="col">Description</th>--}}
@@ -27,6 +29,11 @@
                                 <th scope="col">Country</th>
                                 <th scope="col">Hot Movie</th>
                                 <th scope="col">Resolution</th>
+                                <th scope="col">Subtitle</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Date Create</th>
+                                <th scope="col">Date Update</th>
+
                                 <th scope="col">Show?</th>
                                 <th scope="col">Manage</th>
                             </tr>
@@ -37,6 +44,8 @@
                                 <tr id="{{$movi->id}}">
                                     <th scope="row">{{$key}}</th>
                                     <td>{{$movi->title}}</td>
+                                    <td>{{$movi->origintitle}}</td>
+                                    <td>{{$movi->duration}}</td>
                                     <td>{{$movi->slug}}</td>
                                     <td><img width="60"  src="{{asset('/uploads/movie/'.$movi->image)}}"/></td>
                                     {{--                                    <td>{{$movi->description}}</td>--}}
@@ -59,8 +68,25 @@
                                         <td>Full HD</td>
                                     @endif
 
+                                    @if($movi->subtitle==1)
+                                        <td>Thuyết minh</td>
+                                    @else
+                                        <td>Phụ đề</td>
+                                    @endif
+                                    <td>
+                                    <select id="{{$movi->id}}" class="select-year">
+                                        @for($x = 2023; $x >= 1970; $x--)
+                                            @if($x==$movi->year)
+                                                <option value="{{$x}}" selected>{{$x}}</option>
+                                            @else
+                                                <option value="{{$x}}">{{$x}}</option>
+                                            @endif
 
-
+                                        @endfor
+                                    </select>
+                                    </td>
+                                    <td>{{$movi->datecreate}}</td>
+                                    <td>{{$movi->dateupdate}}</td>
 
                                     @if($movi->status==1)
                                         <td>Hiển thị</td>

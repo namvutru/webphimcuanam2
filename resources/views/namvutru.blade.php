@@ -122,6 +122,14 @@
                                 @endforeach
                             </ul>
                         </li>
+                        <li class="mega dropdown">
+                            <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Năm <span class="caret"></span></a>
+                            <ul role="menu" class=" dropdown-menu">
+                                @for( $x=2023 ; $x>=1970;$x--)
+                                    <li><a title="{{$x}}" href="{{url('nam/'.$x)}}">{{$x}}</a></li>
+                                @endfor
+                            </ul>
+                        </li>
 {{--                        <li><a title="Phim Lẻ" href="danhmuc.php">Phim Lẻ</a></li>--}}
 {{--                        <li><a title="Phim Bộ" href="danhmuc.php">Phim Bộ</a></li>--}}
 {{--                        <li><a title="Phim Chiếu Rạp" href="danhmuc.php">Phim Chiếu Rạp</a></li>--}}

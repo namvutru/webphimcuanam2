@@ -17,7 +17,7 @@ class IndexController extends Controller
 {
     //
     public function home(){
-        $phimhot = Movie::where('phimhot',1)->where('status',1)->get();
+        $phimhot = Movie::where('phimhot',1)->where('status',1)->orderBy('dateupdate','DESC')->get();
         $category = Category::all()->where('status',1);
         $country = Country::all();
         $genre = Genre::all();
@@ -29,7 +29,7 @@ class IndexController extends Controller
         $country = Country::all();
         $genre = Genre::all();
         $gen_slug = Genre::where('slug',$slug)->first();
-        $movie = Movie::where('genre_id',$gen_slug->id)->paginate(20);
+        $movie = Movie::where('genre_id',$gen_slug->id)->orderBy('dateupdate','DESC')->paginate(20);
         return view('pages.genre',compact('category','genre','country','gen_slug','movie'));
     }
     public function country($slug){
@@ -37,7 +37,7 @@ class IndexController extends Controller
         $country = Country::all();
         $genre = Genre::all();
         $coun_slug = Country::where('slug',$slug)->first();
-        $movie = Movie::where('country_id',$coun_slug->id)->paginate(20);;
+        $movie = Movie::where('country_id',$coun_slug->id)->orderBy('dateupdate','DESC')->paginate(20);;
         return view('pages.country',compact('category','genre','country','coun_slug','movie'));
     }
     public function category($slug){
@@ -45,7 +45,7 @@ class IndexController extends Controller
         $country = Country::all();
         $genre = Genre::all();
         $cate_slug = Category::where('slug',$slug)->first();
-        $movie = Movie::where('category_id',$cate_slug->id)->paginate(20);
+        $movie = Movie::where('category_id',$cate_slug->id)->orderBy('dateupdate','DESC')->paginate(20);
         return view('pages.category',compact('category','genre','country','cate_slug','movie'));
     }
     public function movie($slug){
@@ -67,5 +67,15 @@ class IndexController extends Controller
         $country = Country::all();
         $genre = Genre::all();
         return view('pages.episode');
+    }
+
+    public function year($year){
+        $year=$year;
+        $category = Category::all()->where('status',1);
+        $country = Country::all();
+        $genre = Genre::all();
+        $movie = Movie::where('year',$year)->orderBy('dateupdate','DESC')->paginate(20);
+        return view('pages.year',compact('category','genre','country','year','movie'));
+
     }
 }

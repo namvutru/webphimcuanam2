@@ -40,9 +40,27 @@
                             <h1 class="movie-title title-1" style="display:block;line-height:35px;margin-bottom: -14px;color: #ffed4d;text-transform: uppercase;font-size: 18px;">{{$movie->title}}</h1>
                             <h2 class="movie-title title-2" style="font-size: 12px;">{{$movie->title}}</h2>
                             <ul class="list-info-group">
-                                <li class="list-info-group-item"><span>Trạng Thái</span> : <span class="quality">HD</span><span class="episode">Vietsub</span></li>
+                                <li class="list-info-group-item"><span>Trạng Thái</span> :
+                                    <span class="quality">
+                                        @if($movie->resolution==0)
+                                            <td>HD</td>
+                                        @elseif($movie->resolution==1)
+                                            <td>SD</td>
+                                        @elseif($movie->resolution==2)
+                                            <td>CAM</td>
+                                        @else
+                                            <td>Full HD</td>
+                                        @endif
+
+                                    </span>
+                                    <span class="episode">@if($movie->subtitle==1)
+                                            <td>Thuyết minh</td>
+                                        @else
+                                            <td>Phụ đề</td>
+                                        @endif
+                                    </span></li>
                                 <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
-                                <li class="list-info-group-item"><span>Thời lượng</span> : 133 Phút</li>
+                                <li class="list-info-group-item"><span>Thời lượng</span> : {{$movie->duration}}</li>
                                 <li class="list-info-group-item"><span>Thể loại</span> : <a href="{{route('genre',$movie->genre->slug)}}" rel="tag">{{$movie->genre->title}}</a></li>
                                 <li class="list-info-group-item"><span>Danh mục</span> : <a href="{{route('category',$movie->category->slug)}}" rel="tag">{{$movie->category->title}}</a></li>
                                 <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="tag">{{$movie->country->title}}</a></li>
@@ -71,7 +89,7 @@
         <section class="related-movies">
             <div id="halim_related_movies-2xx" class="wrap-slider">
                 <div class="section-bar clearfix">
-                    <h3 class="section-title"><span>PHIM HOT</span></h3>
+                    <h3 class="section-title"><span>CÓ THỂ BẠN CŨNG MUỐN XEM</span></h3>
                 </div>
                 <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
                     @foreach($related as $key => $phimh)
@@ -83,7 +101,7 @@
                                     <div class="halim-post-title-box">
                                         <div class="halim-post-title ">
                                             <p class="entry-title">{{$phimh->title}}</p>
-                                            <p class="original_title">{{$phimh->title}}</p>
+                                            <p class="original_title">{{$phimh->origintitle}}</p>
                                         </div>
                                     </div>
                                 </a>

@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use Carbon\Carbon;
 
 class MovieController extends Controller
 {
@@ -49,6 +50,7 @@ class MovieController extends Controller
         $data = $request->all();
         $movie = new Movie();
         $movie->title=$data['title'];
+        $movie->origintitle = $data['origintitle'];
 //         = $data['image'];
         $movie->slug=$data['slug'];
         $movie->description=$data['description'];
@@ -58,7 +60,10 @@ class MovieController extends Controller
         $movie->country_id=$data['country'];
         $movie->phimhot= $data['phimhot'];
         $movie->resolution= $data['resolution'];
-
+        $movie->subtitle = $data['subtitle'];
+        $movie->duration= $data['duration'];
+        $movie->datecreate = Carbon::now('Asia/Ho_Chi_Minh');
+        $movie->dateupdate = Carbon::now('Asia/Ho_Chi_Minh');
         $get_image = $request->file('image');
         $path = 'uploads/movie/';
         if($get_image){
@@ -118,6 +123,7 @@ class MovieController extends Controller
         $data = $request->all();
         $movie = Movie::find($id);
         $movie->title=$data['title'];
+        $movie->origintitle = $data['origintitle'];
 //         = $data['image'];
         $movie->slug=$data['slug'];
         $movie->description=$data['description'];
@@ -127,10 +133,14 @@ class MovieController extends Controller
         $movie->country_id=$data['country'];
         $movie->phimhot= $data['phimhot'];
         $movie->resolution= $data['resolution'];
+        $movie->subtitle = $data['subtitle'];
+        $movie->duration= $data['duration'];
+        $movie->dateupdate = Carbon::now('Asia/Ho_Chi_Minh');
+
         $get_image = $request->file('image');
         $path = 'uploads/movie/';
         if($get_image){
-            if(!empty($movie->image)){
+            if(file_exists('uploads/movie/'.$movie->image)){
                 unlink('uploads/movie/'.$movie->image);
             }
             $get_name_image = $get_image->getClientOriginalName();
@@ -154,10 +164,17 @@ class MovieController extends Controller
     {
         //
         $movie =Movie::find($id);
-        if(!empty($movie->image)){
+        if(file_exists('uploads/movie/'.$movie->image)){
             unlink('uploads/movie/'.$movie->image);
         }
         $movie->delete();
         return  redirect()->back();
+    }
+
+    public function update_year(Request $request){
+        $data = $request->all();
+        $movie = Movie::find($data['id']);
+        $movie->year = $data['year'];
+        $movie->save();
     }
 }

@@ -5,7 +5,11 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <div class="yoast_breadcrumb hidden-xs"><span><span><a href="">{{$gen_slug->title}}</a> » <span class="breadcrumb_last" aria-current="page">2020</span></span></span></div>
+                        <div class="yoast_breadcrumb hidden-xs"><span><span>Phim thuộc năm:
+                                    @for($x = 2023; $x >= 1970; $x--)
+                                    <span class="breadcrumb_last" aria-current="page"><a href="{{url('nam/'.$x)}}">{{$x}}</a>>> </span>
+                                    @endfor
+                                </span></span></div>
                     </div>
                 </div>
             </div>
@@ -16,7 +20,7 @@
         <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
             <section>
                 <div class="section-bar clearfix">
-                    <h1 class="section-title"><span>{{$gen_slug->title}}</span></h1>
+                    <h1 class="section-title"><span>Phim {{$year}}</span></h1>
                 </div>
                 <div class="halim_box">
                     @foreach($movie as $key => $movi)
@@ -25,7 +29,7 @@
                                 <a class="halim-thumb" href="{{route('movie',$movi->slug)}}" title="{{$movi->title}}">
                                     <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$movi->image)}}" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
                                     <span class="status">
-                                        @if($movi->resolution==0)
+                                @if($movi->resolution==0)
                                             HD
                                         @elseif($movi->resolution==1)
                                             SD
@@ -34,7 +38,8 @@
                                         @else
                                             Full HD
                                         @endif
-                                    </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span>
+                            </span>
+                                    <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span>
                                     <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
                                         <div class="halim-post-title ">
@@ -46,7 +51,6 @@
                             </div>
                         </article>
                     @endforeach
-
 
                 </div>
                 <div class="clearfix"></div>
@@ -195,4 +199,3 @@
         </aside>
     </div>
 @endsection
-

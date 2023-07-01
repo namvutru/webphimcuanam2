@@ -21,6 +21,14 @@
                                     <input type="text" name="title" id="slug"  class="form-control" onkeyup="ChangeToSlug()" placeholder="...">
                                 </div>
                                 <div class="form-group">
+                                    <label >Origin Title</label>
+                                    <input type="text" name="origintitle"   class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label >Duration</label>
+                                    <input type="text" name="duration"   class="form-control" >
+                                </div>
+                                <div class="form-group">
                                     <label >Slug</label>
                                     <input type="text" name="slug"  id="convert_slug" class="form-control" >
                                 </div>
@@ -75,6 +83,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label id="status">Subtitle</label>
+                                    <select class="form-select" name="subtitle" aria-label="Default select example">
+                                        <option value="0" selected >Phụ đề</option>
+                                        <option value="1">Thuyết minh</option>
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label id="status">Status</label>
                                     <select class="form-select" name="status" aria-label="Default select example">
                                         <option value="1">Hiển thị</option>
@@ -90,6 +106,14 @@
                                 <div class="form-group">
                                     <label id="title">Title</label>
                                     <input type="text" name="title" id="slug" value="{{$movie->title}}"  class="form-control" onkeyup="ChangeToSlug()" placeholder="...">
+                                </div>
+                                <div class="form-group">
+                                    <label >Origin Title</label>
+                                    <input type="text" name="origintitle" value="{{$movie->origintitle}}"  class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label >Duration</label>
+                                    <input type="text" name="duration" value="{{$movie->duration}}"  class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label id="slug">Slug</label>
@@ -160,7 +184,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label id="status">Status</label>
+                                    <label id="status">Resolution</label>
                                     <select class="form-select" name="resolution" aria-label="Default select example">
 
                                         @if($movie->resolution==0)
@@ -185,9 +209,18 @@
                                             <option value="3"selected>Full HD</option>
                                         @endif
                                     </select>
-
-
-
+                                </div>
+                                <div class="form-group">
+                                    <label id="status">Subtitle</label>
+                                    <select class="form-select" name="subtitle" aria-label="Default select example">
+                                        @if($movie->subtitle==1)
+                                            <option value="0"  >Phụ đề</option>
+                                            <option value="1" selected>Thuyết minh</option>
+                                        @else
+                                            <option value="0"  selected>Phụ đề</option>
+                                            <option value="1" >Thuyết minh</option>
+                                        @endif
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label id="status">Status</label>
