@@ -27,17 +27,32 @@
                                 <a class="halim-thumb" href="{{route('movie',$movi->slug)}}" title="{{$movi->title}}">
                                     <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$movi->image)}}" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
                                     <span class="status">
-                                @if($movi->resolution==0)
+                               @if($movi->resolution==0)
                                             HD
                                         @elseif($movi->resolution==1)
                                             SD
                                         @elseif($movi->resolution==2)
                                             CAM
-                                        @else
+                                        @elseif($movi->resolution==3)
                                             Full HD
+                                        @else
+                                            Trailer
                                         @endif
                             </span>
-                                    <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span>
+                                    <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                                     @if($movi->subtitle==1)
+                                            Thuyết minh
+                                            @if($movi->season!=0)
+                                                - Sesion {{$movi->season}}
+                                            @endif
+
+                                        @else
+                                            Phụ đề
+                                            @if($movi->season!=0)
+                                                -Sesion {{$movi->season}}
+                                            @endif
+                                        @endif
+                                    </span>
                                     <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
                                         <div class="halim-post-title ">

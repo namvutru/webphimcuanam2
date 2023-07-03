@@ -98,18 +98,55 @@
         $('.select-year').change(function(){
             var year = $(this).find(':selected').val();
             var id = $(this).attr('id');
+            var _token = $('input[name="_token"]').val();
             // alert(year);
             // alert(id);
             $.ajax({
                 url:"{{url('/update-year-phim')}}",
-                method:"GET",
-                data:{year:year,id:id},
+                method:"post",
+                data:{year:year,id:id,_token:_token},
                 success:function(data){
-                    alert('thay đổi năm phim thành công'+ year);
+                    alert('thay đổi năm phim thành công: '+ year);
                 }
 
             });
         })
+    </script>
+    <script type="text/javascript">
+        $('.select-season').change(function(){
+            var season = $(this).find(':selected').val();
+            var id = $(this).attr('id');
+            var _token = $('input[name="_token"]').val();
+             // alert(season);
+            // alert(id);
+            $.ajax({
+                url:"{{url('/update-season')}}",
+                method:"post",
+                data:{season:season,id:id,_token:_token},
+                success:function(data){
+                    alert('thay đổi season phim thành công: '+ season);
+                }
+
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $('.select-topview').change(function() {
+            var topview = $(this).find(':selected').val();
+            var id = $(this).attr('id');
+            // alert(topview);
+            // alert(id);
+                $.ajax({
+                    url:"{{url('/update-topview')}}",
+                    method:"GET",
+                    data:{topview:topview,id:id},
+                    success:function(data){
+                        alert('thay đổi kiểu hiển thị topview thàng công');
+                    }
+
+                });
+            })
     </script>
 
     <script type="text/javascript">

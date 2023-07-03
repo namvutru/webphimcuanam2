@@ -35,11 +35,26 @@
                                             SD
                                         @elseif($movi->resolution==2)
                                             CAM
-                                        @else
+                                        @elseif($movi->resolution==3)
                                             Full HD
+                                        @else
+                                            Trailer
                                         @endif
                             </span>
-                                    <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span>
+                                    <span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                                     @if($movi->subtitle==1)
+                                            Thuyết minh
+                                            @if($movi->season!=0)
+                                                - Sesion {{$movi->season}}
+                                            @endif
+
+                                        @else
+                                            Phụ đề
+                                            @if($movi->season!=0)
+                                                -Sesion {{$movi->season}}
+                                            @endif
+                                        @endif
+                                    </span>
                                     <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
                                         <div class="halim-post-title ">

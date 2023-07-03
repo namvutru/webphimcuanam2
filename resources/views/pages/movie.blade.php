@@ -43,29 +43,38 @@
                                 <li class="list-info-group-item"><span>Trạng Thái</span> :
                                     <span class="quality">
                                         @if($movie->resolution==0)
-                                            <td>HD</td>
+                                            HD
                                         @elseif($movie->resolution==1)
-                                            <td>SD</td>
+                                            SD
                                         @elseif($movie->resolution==2)
-                                            <td>CAM</td>
+                                            CAM
+                                        @elseif($movie->resolution==3)
+                                            Full HD
                                         @else
-                                            <td>Full HD</td>
+                                            Trailer
                                         @endif
 
                                     </span>
+                                    @if($movie->resolution!=4)
                                     <span class="episode">@if($movie->subtitle==1)
                                             <td>Thuyết minh</td>
                                         @else
                                             <td>Phụ đề</td>
                                         @endif
-                                    </span></li>
+                                    </span>
+                                    @endif
+                                </li>
                                 <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
                                 <li class="list-info-group-item"><span>Thời lượng</span> : {{$movie->duration}}</li>
+                                @if($movie->season!=0)
+                                    <li class="list-info-group-item"><span>Season</span> : {{$movie->season}}</li>
+                                @endif
                                 <li class="list-info-group-item"><span>Thể loại</span> : <a href="{{route('genre',$movie->genre->slug)}}" rel="tag">{{$movie->genre->title}}</a></li>
                                 <li class="list-info-group-item"><span>Danh mục</span> : <a href="{{route('category',$movie->category->slug)}}" rel="tag">{{$movie->category->title}}</a></li>
                                 <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="tag">{{$movie->country->title}}</a></li>
+                                <li class="list-info-group-item"><span>Năm phim</span> : <a href="{{url('nam/'.$movie->year)}}">{{$movie->year}}</a></li>
 
-                            <div class="movie-trailer hidden"></div>
+                                <div class="movie-trailer hidden"></div>
                             </ul>
                         </div>
                     </div>
@@ -99,6 +108,14 @@
                         </article>
                     </div>
                 </div>
+                <div class="section-bar clearfix">
+                    <h2 class="section-title"><span style="color:#ffed4d">Trailer</span></h2>
+                </div>
+                <div class="entry-content htmlwrap clearfix">
+                    <div class="video-item halim-entry-box">
+                        <iframe width="100%" height="315" src="{{$movie->trailer}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -113,7 +130,7 @@
                             <div class="halim-item">
                                 <a class="halim-thumb" href="{{route('movie',$phimh->slug)}}" title="{{$phimh->title}}">
                                     <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$phimh->image)}}" alt="Image Phim" title="Image Phim"></figure>
-                                    <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> <div class="icon_overlay"></div>
+                                    <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>{{$phimh->subtitle}}</span> <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
                                         <div class="halim-post-title ">
                                             <p class="entry-title">{{$phimh->title}}</p>

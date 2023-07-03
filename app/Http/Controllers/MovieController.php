@@ -63,6 +63,7 @@ class MovieController extends Controller
         $movie->subtitle = $data['subtitle'];
         $movie->duration= $data['duration'];
         $movie->tags= $data['tags'];
+        $movie->trailer= $data['trailer'];
         $movie->datecreate = Carbon::now('Asia/Ho_Chi_Minh');
         $movie->dateupdate = Carbon::now('Asia/Ho_Chi_Minh');
         $get_image = $request->file('image');
@@ -137,6 +138,7 @@ class MovieController extends Controller
         $movie->subtitle = $data['subtitle'];
         $movie->duration= $data['duration'];
         $movie->tags= $data['tags'];
+        $movie->trailer= $data['trailer'];
         $movie->dateupdate = Carbon::now('Asia/Ho_Chi_Minh');
 
         $get_image = $request->file('image');
@@ -178,6 +180,52 @@ class MovieController extends Controller
         $movie = Movie::find($data['id']);
         $movie->year = $data['year'];
         $movie->save();
+    }
+    public function update_topview(Request $request){
+        $data = $request->all();
+        $movie = Movie::find($data['id']);
+        $movie->topview = $data['topview'];
+        $movie->save();
+    }
+    public function update_season(Request $request){
+        $data = $request->all();
+        $movie = Movie::find($data['id']);
+        $movie->season = $data['season'];
+        $movie->save();
+    }
+
+    public function filter_topview(Request $request){
+        $data = $request->all();
+        $movie = Movie::where('topview',$data['value'])->orderBy('ngaycapnhat','desc')->take(20)->get();
+        $output ='';
+        foreach ($movie as $key => $movi){
+            if($movi->relution ==0){
+                $text = "HD";
+            }elseif ($movi->relution ==1){
+                $text = "SD";
+            }elseif ($movi->relution ==2){
+                $text ="CAM" ;
+            }else{
+                $text ="Full HD";
+            }
+        $output .= '<div class="item">
+                    <a href="chitiet.php" title="CHỊ MƯỜI BA: BA NGÀY SINH TỬ">
+                        <div class="item-link">
+                            <img src="'.url('uploads/movie/'.$movi->image).'" class="lazy post-thumb" alt="'.$movi->title.'" title="'.$movi->title.'" />
+                            <span class="is_trailer">'.$text.'</span>
+                        </div>
+                        <p class="title">'.$movi->title.'</p>
+                    </a>
+                    <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
+                    <div style="float: left;">
+                                 <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
+                                 <span style="width: 0%"></span>
+                                 </span>
+                    </div>
+                </div>';
+        }
+        echo $output;
+
     }
 
 }

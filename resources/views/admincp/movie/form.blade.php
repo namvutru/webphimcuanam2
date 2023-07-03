@@ -29,8 +29,12 @@
                                     <input type="text" name="duration"   class="form-control" >
                                 </div>
                                 <div class="form-group">
+                                    <label >Trailer</label>
+                                    <input type="text" name="trailer"   class="form-control" >
+                                </div>
+                                <div class="form-group">
                                     <label >Slug</label>
-                                    <input type="text" name="slug"  id="convert_slug" class="form-control" >
+                                    <input  type="text" name="slug"  id="convert_slug" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label>Image</label>
@@ -84,6 +88,7 @@
                                         <option value="1">SD</option>
                                         <option value="2"  >CAM</option>
                                         <option value="3">Full HD</option>
+                                        <option value="4">Trailer</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -118,6 +123,10 @@
                                 <div class="form-group">
                                     <label >Duration</label>
                                     <input type="text" name="duration" value="{{$movie->duration}}"  class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label >Trailer</label>
+                                    <input type="text" name="trailer" value="{{$movie->trailer}}"  class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label id="slug">Slug</label>
@@ -200,21 +209,31 @@
                                             <option value="1">SD</option>
                                             <option value="2"  >CAM</option>
                                             <option value="3">Full HD</option>
+                                            <option value="4">Trailer</option>
                                         @elseif($movie->resolution==1)
                                             <option value="0"  >HD</option>
                                             <option value="1"selected>SD</option>
                                             <option value="2"  >CAM</option>
                                             <option value="3">Full HD</option>
+                                            <option value="4">Trailer</option>
                                         @elseif($movie->resolution==2)
                                             <option value="0"  >HD</option>
                                             <option value="1">SD</option>
                                             <option value="2" selected >CAM</option>
                                             <option value="3">Full HD</option>
-                                        @else
+                                            <option value="4">Trailer</option>
+                                        @elseif($movie->resolution==3)
                                             <option value="0"  >HD</option>
                                             <option value="1">SD</option>
                                             <option value="2"  >CAM</option>
                                             <option value="3"selected>Full HD</option>
+                                            <option value="4">Trailer</option>
+                                        @else
+                                                <option value="0">HD</option>
+                                                <option value="1">SD</option>
+                                                <option value="2">CAM</option>
+                                                <option value="3">Full HD</option>
+                                                <option value="4"selected>Trailer</option>
                                         @endif
                                     </select>
                                 </div>

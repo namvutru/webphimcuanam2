@@ -33,6 +33,8 @@
                                 <th scope="col">Resolution</th>
                                 <th scope="col">Subtitle</th>
                                 <th scope="col">Year</th>
+                                <th scope="col">Top Views</th>
+                                <th scope="col">Sesion</th>
                                 <th scope="col">Date Create</th>
                                 <th scope="col">Date Update</th>
 
@@ -67,8 +69,10 @@
                                         <td>SD</td>
                                     @elseif($movi->resolution==2)
                                         <td>CAM</td>
-                                    @else
+                                    @elseif($movi->resolution==3)
                                         <td>Full HD</td>
+                                        @else
+                                        <td>Trailer</td>
                                     @endif
 
                                     @if($movi->subtitle==1)
@@ -88,6 +92,42 @@
                                         @endfor
                                     </select>
                                     </td>
+                                    <td>
+                                        <select class="select-topview" id="{{$movi->id}}">
+                                            @if($movi->topview==0)
+                                            <option value="0"selected>Day</option>
+                                            <option value="1">Week</option>
+                                            <option value="2">Month</option>
+
+                                            @elseif($movi->topview==1)
+                                                <option value="0">Day</option>
+                                                <option value="1"selected>Week</option>
+                                                <option value="2">Month</option>
+
+                                            @elseif($movi->topview==2)
+                                                <option value="0">Day</option>
+                                                <option value="1">Week</option>
+                                                <option value="2"selected>Month</option>
+                                            @else
+                                                <option value="0">Day</option>
+                                                <option value="1">Week</option>
+                                                <option value="2">Month</option>
+                                            @endif
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="{{$movi->id}}" class="select-season">
+                                            @for($x = 0; $x <=25; $x++)
+                                                @if($x==$movi->season)
+                                                    <option value="{{$x}}" selected>{{$x}}</option>
+                                                @else
+                                                    <option value="{{$x}}">{{$x}}</option>
+                                                @endif
+
+                                            @endfor
+                                        </select>
+                                    </td>
+
                                     <td>{{$movi->datecreate}}</td>
                                     <td>{{$movi->dateupdate}}</td>
 

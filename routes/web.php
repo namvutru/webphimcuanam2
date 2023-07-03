@@ -30,20 +30,19 @@ Route::get('/the-loai/{slug}',[IndexController::class, 'genre'])->name('genre');
 Route::get('/phim/{slug}',[IndexController::class, 'movie'])->name('movie');
 Route::get('/xem-phim',[IndexController::class, 'watch'])->name('watch');
 Route::get('/tap-phim',[IndexController::class, 'episode'])->name('episode');
-Route::get('/update-year-phim',[MovieController::class,'update_year']);
+Route::post('/update-year-phim',[MovieController::class,'update_year']);
+Route::get('/update-topview',[MovieController::class,'update_topview']);
+Route::get('/filter-topview',[MovieController::class,'filter_topview']);
+Route::post('/update-season',[MovieController::class,'update_season']);
+
 Route::get('/nam/{year}',[IndexController::class,'year']);
 Route::get('/tag/{tag}',[IndexController::class,'tag']);
 
 
 
-
-
 Auth::routes();
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('resorting',[CategoryController::class,'resorting'])->name('resorting');
-
-
 Route::resource('category', CategoryController::class);
 Route::resource('genre', GenreController::class);
 Route::resource('country', CountryController::class);

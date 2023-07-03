@@ -177,6 +177,26 @@
             responsive: {0: {items:2},480: {items:3}, 600: {items:5},1000: {items: 5}}})});
 
 </script>
+<script type="text/javascript">
+    $('.filter-sidebar').click(function (){
+         var  hrel = $(this).attr('href');
+         if(hrel =='#day') {
+            var value = 0;
+         }else if(hrel=='#week'){
+            var value = 1;
+         }else{
+            var value = 2;
+        }
+         $.ajax({
+             url: "{{url('/filter-topview')}}",
+             method: "GET",
+             data: {value:value},
+             success: function (data) {
+                 $('#show'+value).html(data);
+             }
+         });
+    })
+</script>
 <script type='text/javascript' src='{{asset('js/bootstrap.min.js?ver=5.7.2')}}' id='bootstrap-js'></script>
 <script type='text/javascript' src='{{asset('js/owl.carousel.min.js?ver=5.7.2')}}' id='carousel-js'></script>
 <script type='text/javascript' src='{{asset('js/halimtheme-core.min.js?ver=1626273138')}}' id='halim-init-js'></script>
