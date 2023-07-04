@@ -40,13 +40,13 @@
                                     @if($movi->subtitle==1)
                                             Thuyết minh
                                             @if($movi->season!=0)
-                                                - Sesion {{$movi->season}}
+                                                - Season {{$movi->season}}
                                             @endif
 
                                         @else
                                             Phụ đề
                                             @if($movi->season!=0)
-                                                -Sesion {{$movi->season}}
+                                                -Season {{$movi->season}}
                                             @endif
                                         @endif
                                     </span>

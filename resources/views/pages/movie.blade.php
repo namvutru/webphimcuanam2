@@ -29,12 +29,16 @@
                     <div class="movie_info col-xs-12">
                         <div class="movie-poster col-md-3">
                             <img class="movie-thumb" src="{{asset('uploads/movie/'.$movie->image)}}" alt="{{$movie->title}}">
+                            @if($movie->resolution!=4)
                             <div class="bwa-content">
                                 <div class="loader"></div>
                                 <a href="{{route('watch')}}" class="bwac-btn">
                                     <i class="fa fa-play"></i>
                                 </a>
                             </div>
+                            @else
+                                <a href="#watch-trailer"  style="display:block;" class="btn btn-primary watch-trailer">Xem trailer</a>
+                            @endif
                         </div>
                         <div class="film-poster col-md-9">
                             <h1 class="movie-title title-1" style="display:block;line-height:35px;margin-bottom: -14px;color: #ffed4d;text-transform: uppercase;font-size: 18px;">{{$movie->title}}</h1>
@@ -109,13 +113,32 @@
                     </div>
                 </div>
                 <div class="section-bar clearfix">
+                    <h2 class="section-title"><span style="color:#ffed4d">Đánh giá</span></h2>
+                </div>
+                <div class="entry-content htmlwrap clearfix">
+                    <div class="video-item halim-entry-box">
+                        <article id="post-38424" class="item-content">
+                            @php
+                            $current_url= Request::url();
+                            @endphp
+
+                            <div style="background-color:#FFFFFF;" class="fb-comments" data-href="{{$current_url}}"  data-width="" data-colorscheme="light" data-numposts="10"></div>
+                        </article>
+                    </div>
+                </div>
+                @if($movie->resolution==4)
+
+                <div class="section-bar clearfix">
                     <h2 class="section-title"><span style="color:#ffed4d">Trailer</span></h2>
                 </div>
                 <div class="entry-content htmlwrap clearfix">
                     <div class="video-item halim-entry-box">
+                        <article id="watch-trailer" class="item-content">
                         <iframe width="100%" height="315" src="{{$movie->trailer}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </article>
                     </div>
                 </div>
+                @endif
             </div>
         </section>
 

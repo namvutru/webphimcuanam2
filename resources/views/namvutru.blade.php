@@ -171,12 +171,22 @@
 </footer>
 <div id='easy-top'></div>
 <script>
+    $(".watch-trailer").click(function (){
+        e.preventDefault();
+        var ald = $(this).attr("href");
+        $('html,body').animate({scrollTop: $(ald).offset().top},'slow');
+    });
+</script>
+<script>
     jQuery(document).ready(function($) {
         var owl = $('#halim_related_movies-2');
         owl.owlCarousel({loop: true,margin:5,autoplay: true,autoplayTimeout: 4000,autoplayHoverPause: true,nav: true,navText: ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],responsiveClass: true,
             responsive: {0: {items:2},480: {items:3}, 600: {items:5},1000: {items: 5}}})});
 
 </script>
+<div id="fb-root"></div>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v17.0&appId=428076886095768&autoLogAppEvents=1" nonce="8dxVF35s"></script>
 <script type="text/javascript">
     $('.filter-sidebar').click(function (){
          var  hrel = $(this).attr('href');

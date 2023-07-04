@@ -45,6 +45,54 @@
         </section>
         <div class="clearfix"></div>
     </div>
+
+    <div id="halim_tab_popular_videos-widget-7" class="widget halim_tab_popular_videos-widget">
+        <div class="section-bar clearfix">
+            <div class="section-title">
+                <span>Phim sắp chiếu</span>
+            </div>
+        </div>
+        <section class="tab-content">
+            <div role="tabpanel" class="tab-pane active halim-ajax-popular-post">
+                <div class="halim-ajax-popular-post-loading hidden"></div>
+                <div id="halim-ajax-popular-post" class="popular-post">
+                    @foreach($phimhot_trailer as $key => $movi)
+                        <div class="item post-37176">
+                            <a href="{{route('movie',$movi->slug)}}" title="{{$movi->title}}">
+                                <div class="item-link">
+                                    <img src="{{asset('uploads/movie/'.$movi->image)}}" class="lazy post-thumb" alt="{{$movi->title}}" title="{{$movi->title}}" />
+                                    <span class="is_trailer">
+                                     @if($movi->resolution==0)
+                                            <td>HD</td>
+                                        @elseif($movi->resolution==1)
+                                            <td>SD</td>
+                                        @elseif($movi->resolution==2)
+                                            <td>CAM</td>
+                                        @elseif($movi->resolution==3)
+                                            <td>Full HD</td>
+                                        @else
+                                            <td>Trailer</td>
+                                        @endif
+                                </span>
+                                </div>
+                                <p class="title">{{$movi->title}}</p>
+
+                            </a>
+                            <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
+                            <div style="float: left;">
+                                 <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
+                                 <span style="width: 0%"></span>
+                                 </span>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+        </section>
+        <div class="clearfix"></div>
+    </div>
+
 </aside>
 <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
     <div id="halim_tab_popular_videos-widget-7" class="widget halim_tab_popular_videos-widget">
