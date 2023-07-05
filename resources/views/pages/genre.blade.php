@@ -19,54 +19,56 @@
                     <h1 class="section-title"><span>{{$gen_slug->title}}</span></h1>
                 </div>
                 <div class="halim_box">
-                    @foreach($movie as $key => $movi)
+                    @foreach($movie_genre as $key => $movi_gen)
+                        @if($movi_gen->movie->status==1)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
                             <div class="halim-item">
-                                <a class="halim-thumb" href="{{route('movie',$movi->slug)}}" title="{{$movi->title}}">
-                                    <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$movi->image)}}" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
+                                <a class="halim-thumb" href="{{route('movie',$movi_gen->movie->slug)}}" title="{{$movi_gen->movie->title}}">
+                                    <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$movi_gen->movie->image)}}" alt="VŨNG LẦY PHẦN 1" title="VŨNG LẦY PHẦN 1"></figure>
                                     <span class="status">
-                                       @if($movi->resolution==0)
+                                       @if($movi_gen->movie->resolution==0)
                                             HD
-                                        @elseif($movi->resolution==1)
+                                        @elseif($movi_gen->movie->resolution==1)
                                             SD
-                                        @elseif($movi->resolution==2)
+                                        @elseif($movi_gen->movie->resolution==2)
                                             CAM
-                                        @elseif($movi->resolution==3)
+                                        @elseif($movi_gen->movie->resolution==3)
                                             Full HD
                                         @else
                                             Trailer
                                         @endif
                                     </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
-                                    @if($movi->subtitle==1)
+                                    @if($movi_gen->movie->subtitle==1)
                                             Thuyết minh
-                                            @if($movi->season!=0)
-                                                - Season {{$movi->season}}
+                                            @if($movi_gen->movie->season!=0)
+                                                - Season {{$movi_gen->movie->season}}
                                             @endif
 
                                         @else
                                             Phụ đề
-                                            @if($movi->season!=0)
-                                                -Season {{$movi->season}}
+                                            @if($movi_gen->movie->season!=0)
+                                                -Season {{$movi_gen->movie->season}}
                                             @endif
                                         @endif
                                     </span>
                                     <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
                                         <div class="halim-post-title ">
-                                            <p class="entry-title">{{$movi->title}}</p>
-                                            <p class="original_title">{{$movi->origintitle}}</p>
+                                            <p class="entry-title">{{$movi_gen->movie->title}}</p>
+                                            <p class="original_title">{{$movi_gen->movie->origintitle}}</p>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                         </article>
+                        @endif
                     @endforeach
 
 
                 </div>
                 <div class="clearfix"></div>
                 <div class="text-center">
-                    {!!$movie->links("pagination::bootstrap-4")!!}
+                    {!!$movie_genre ->links("pagination::bootstrap-4")!!}
                 </div>
             </section>
         </main>

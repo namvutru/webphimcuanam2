@@ -23,6 +23,7 @@
                                 <th scope="col">Duration</th>
                                 <th scope="col">Slug</th>
                                 <th scope="col">Image</th>
+                                <th scope="col">Episode</th>
                                 <th scope="col">Tags</th>
 
                                 {{--                                <th scope="col">Description</th>--}}
@@ -52,10 +53,17 @@
                                     <td>{{$movi->duration}}</td>
                                     <td>{{$movi->slug}}</td>
                                     <td><img width="60"  src="{{asset('/uploads/movie/'.$movi->image)}}"/></td>
+                                    <td>{{$movi->episode}}
                                     {{--                                    <td>{{$movi->description}}</td>--}}
                                     <td>{{$movi->tags}}</td>
                                     <td>{{$movi->category->title}}</td>
-                                    <td>{{$movi->genre->title}}</td>
+                                    <td>
+                                            @foreach($list_movie_genre as $key =>$movi_gen)
+                                                @if($movi_gen->movie_id == $movi->id)
+                                                <span class="badge badge-dark">{{$movi_gen->genre->title}}</span>
+                                               @endif
+                                            @endforeach
+                                    </td>
                                     <td>{{$movi->country->title}}</td>
                                     @if($movi->phimhot==1)
                                         <td>Hot</td>

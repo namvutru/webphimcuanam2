@@ -41,6 +41,10 @@
                                     <input type="file" name="image"  class="form-control-file"  >
                                 </div>
                                 <div class="form-group">
+                                    <label >Episode</label>
+                                    <input type="text" name="episode"   class="form-control" >
+                                </div>
+                                <div class="form-group">
                                     <label id="description">Description</label>
                                     <textarea type="text" name="description" style="resize: none" id="description" class="form-control" ></textarea>
                                 </div>
@@ -65,13 +69,11 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label >Genre</label>
-                                    <select name="genre" class="form-control">
+                                    <label >Genre</label><br/>
                                         @foreach($genre as $key => $gen)
-                                            <option value="{{$gen->id}}">{{$gen->title}}</option>
+                                            <input type="checkbox" id="{{$gen->id}}" name="{{$gen->slug}}">
+                                            <label>{{$gen->title}} ||</label>
                                         @endforeach
-                                    </select>
-
                                 </div>
                                 <div class="form-group">
                                     <label id="status">Hot Movie</label>
@@ -143,6 +145,10 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
+                                    <label >Episode</label>
+                                    <input type="text" name="episode" value="{{$movie->episode}}" class="form-control" >
+                                </div>
+                                <div class="form-group">
                                     <label id="description">Description</label>
                                     <textarea type="text" name="description"  style="resize: none"  id="description" class="form-control" >{{$movie->description}}</textarea>
                                 </div>
@@ -175,17 +181,24 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label >Genre</label>
-                                    <select name="genre" class="form-control">
-                                        @foreach($genre as $key => $gen)
-                                            @if($gen->id == $movie->genre->id)
-                                                <option value="{{$gen->id}}" selected>{{$gen->title}}</option>
-                                            @else
-                                                <option value="{{$gen->id}}">{{$gen->title}}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-
+                                    <label >Genre</label><br/>
+                                            @foreach($genre as $key => $gen)
+                                                @php $x=0 @endphp
+                                                @foreach($list_movie_genre as $key => $movi_gen)
+                                                    @if($movi_gen->genre_id == $gen->id)
+                                                        @php $x=1 @endphp
+                                                        @break;
+                                                     @endif
+                                                @endforeach
+                                                @if($x==1)
+                                                <input type="checkbox" id="{{$gen->id}}" name="{{$gen->slug}}" checked>
+                                                <label>{{$gen->title}} ||</label>
+                                                @else
+                                                <input type="checkbox" id="{{$gen->id}}" name="{{$gen->slug}}">
+                                                <label>{{$gen->title}} ||</label>
+                                                @endif
+                                                @php $x=0 @endphp
+                                            @endforeach
                                 </div>
                                 <div class="form-group">
                                     <label id="status">Hot Movie</label>

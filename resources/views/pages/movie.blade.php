@@ -42,7 +42,7 @@
                         </div>
                         <div class="film-poster col-md-9">
                             <h1 class="movie-title title-1" style="display:block;line-height:35px;margin-bottom: -14px;color: #ffed4d;text-transform: uppercase;font-size: 18px;">{{$movie->title}}</h1>
-                            <h2 class="movie-title title-2" style="font-size: 12px;">{{$movie->title}}</h2>
+                            <h2 class="movie-title title-2" style="font-size: 12px;">{{$movie->origintitle}}</h2>
                             <ul class="list-info-group">
                                 <li class="list-info-group-item"><span>Trạng Thái</span> :
                                     <span class="quality">
@@ -71,9 +71,14 @@
                                 <li class="list-info-group-item"><span>Điểm IMDb</span> : <span class="imdb">7.2</span></li>
                                 <li class="list-info-group-item"><span>Thời lượng</span> : {{$movie->duration}}</li>
                                 @if($movie->season!=0)
-                                    <li class="list-info-group-item"><span>Season</span> : {{$movie->season}}</li>
+                                    <li class="list-info-group-item"><span>Phần</span> : {{$movie->season}}</li>
                                 @endif
-                                <li class="list-info-group-item"><span>Thể loại</span> : <a href="{{route('genre',$movie->genre->slug)}}" rel="tag">{{$movie->genre->title}}</a></li>
+                                <li class="list-info-group-item"><span>Số tập</span> : {{$movie->episode}}</li>
+                                <li class="list-info-group-item"><span>Thể loại</span> :
+                                    @foreach($movie_genre as $key =>$movi_gen)
+                                    <a href="{{route('genre',$movi_gen->genre->slug)}}" rel="tag">{{$movi_gen->genre->title}}</a>
+                                    @endforeach
+                                </li>
                                 <li class="list-info-group-item"><span>Danh mục</span> : <a href="{{route('category',$movie->category->slug)}}" rel="tag">{{$movie->category->title}}</a></li>
                                 <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="tag">{{$movie->country->title}}</a></li>
                                 <li class="list-info-group-item"><span>Năm phim</span> : <a href="{{url('nam/'.$movie->year)}}">{{$movie->year}}</a></li>
