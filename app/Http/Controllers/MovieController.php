@@ -8,7 +8,7 @@ use App\Models\Genre;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use Carbon\Carbon;
-
+use File;
 class MovieController extends Controller
 {
     /**
@@ -18,9 +18,19 @@ class MovieController extends Controller
      */
     public function index()
     {
+        $list = Movie::with('category','genre','country')->orderBy('id','desc')->get();
         //
-        $list = Movie::with('category','country','genre')->orderBy('id','DESC')->get();
-        return view ('admincp.movie.index',compact('list'));
+        $path = public_path()."/jsonfile/";
+        if(!is_dir($path)){
+            if (!mkdir($path, 0777, true) && !is_dir($path)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
+            }
+        }
+        File::put($path.'movie.json',json_encode($list));
+
+        return view('admincp.movie.index',compact('list'));
+
+
     }
 
     /**

@@ -101,4 +101,21 @@ class IndexController extends Controller
         return view('pages.tags',compact('category','genre','country','tag','movie','phimhot_sidebar','phimhot_trailer'));
 
     }
+
+    public function search(Request $request){
+
+        $data = $request->all();
+        if(!isset($data['search'])){
+            return redirect->to('/');
+        }
+        $phimhot_sidebar= Movie::where('phimhot',1)->where('status',1)->orderBy('dateupdate','DESC')->take(30)->get();
+        $phimhot_trailer= Movie::where('resolution',4)->where('status',1)->orderBy('dateupdate','DESC')->take(10)->get();
+        $category = Category::all()->where('status',1);
+        $country = Country::all();
+        $genre = Genre::all();
+        $search = $data['search'];
+        $movie = Movie::where('title','LIKE','%'.$search.'%')->orderBy('dateupdate','DESC')->paginate(20);
+        return view('pages.search',compact('category','genre','country','search','movie','phimhot_sidebar','phimhot_trailer'));
+
+    }
 }

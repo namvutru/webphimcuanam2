@@ -47,15 +47,18 @@
             <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
                 <div class="header-nav">
                     <div class="col-xs-12">
-                        <form id="search-form-pc" name="halimForm" role="search" action="" method="GET">
-                            <div class="form-group">
-                                <div class="input-group col-xs-12">
-                                    <input id="search" type="text" name="s" class="form-control" placeholder="Tìm kiếm..." autocomplete="off" required>
-                                    <i class="animate-spin hl-spin4 hidden"></i>
+                            <div class="form-group form-timkiem">
+                                <div class="input-group col-xs-12" >
+                                    <form action="{{route('tim-kiem')}}" method="get">
+                                    <input  id="timkiem" type="text" name="search" class="form-control" placeholder="Tìm kiếm phim..." autocomplete="off" required>
+                                    <button class="btn btn-primary" name="btnsearch">Tìm kiếm</button>
+                                    </form>
+
                                 </div>
                             </div>
-                        </form>
-                        <ul class="ui-autocomplete ajax-results hidden"></ul>
+                        <ul class="list-group" id ="result">
+
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -181,12 +184,39 @@
     jQuery(document).ready(function($) {
         var owl = $('#halim_related_movies-2');
         owl.owlCarousel({loop: true,margin:5,autoplay: true,autoplayTimeout: 4000,autoplayHoverPause: true,nav: true,navText: ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],responsiveClass: true,
+            responsive: {0: {items:2},480: {items:3}, 600: {items:5},1000: {items: 6}}})});
+    jQuery(document).ready(function($) {
+        var owl = $('#halim_related_movies-3');
+        owl.owlCarousel({loop: true,margin:5,autoplay: true,autoplayTimeout: 4000,autoplayHoverPause: true,nav: true,navText: ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],responsiveClass: true,
             responsive: {0: {items:2},480: {items:3}, 600: {items:5},1000: {items: 5}}})});
 
 </script>
 <div id="fb-root"></div>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v17.0&appId=428076886095768&autoLogAppEvents=1" nonce="8dxVF35s"></script>
+<script>
+    $(document).ready(function() {
+        $('#timkiem').keyup(function() {
+            $('#result').html('');
+            var search = $('#timkiem').val();
+            if(search!=''){
+                var expression = new RegExp(search,"i");
+                $.getJSON('/jsonfile/movie.json',function(data){
+                    $.each(data,function(key,value){
+                         if(value.title.search(expression)!=-1){
+                            $('#result').append('<li style="cursor:pointer; display: flex; max-height: 200px;" class="list-group-item link-class"><img src="/uploads/movie/'+value.image+'" width="100" class="" /><div style="flex-direction: column; margin-left: 2px;"><h4 width="100%">'+value.title+'</h4><span style="display: -webkit-box; max-height: 8.2rem; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; white-space: normal; -webkit-line-clamp: 5; line-height: 1.6rem;" class="text-muted"></span></div></li>');
+                         }
+                    });
+                })
+            }
+        })
+        $('#result').on('click','li', function(){
+            var click_text = $(this).text();
+            $('#timkiem').val($.trim(click_text));
+            $('#result').html('');
+        });
+    });
+</script>
 <script type="text/javascript">
     $('.filter-sidebar').click(function (){
          var  hrel = $(this).attr('href');

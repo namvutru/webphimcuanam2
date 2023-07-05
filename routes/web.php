@@ -35,6 +35,8 @@ Route::get('/update-topview',[MovieController::class,'update_topview']);
 Route::get('/filter-topview',[MovieController::class,'filter_topview']);
 Route::post('/update-season',[MovieController::class,'update_season']);
 
+Route::get('/tim-kiem',[IndexController::class, 'search'])->name('tim-kiem');
+
 Route::get('/nam/{year}',[IndexController::class,'year']);
 Route::get('/tag/{tag}',[IndexController::class,'tag']);
 

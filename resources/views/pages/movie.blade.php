@@ -147,13 +147,38 @@
                 <div class="section-bar clearfix">
                     <h3 class="section-title"><span>CÓ THỂ BẠN CŨNG MUỐN XEM</span></h3>
                 </div>
-                <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
+                <div id="halim_related_movies-3" class="owl-carousel owl-theme related-film">
                     @foreach($related as $key => $phimh)
                         <article class="thumb grid-item post-38494">
                             <div class="halim-item">
                                 <a class="halim-thumb" href="{{route('movie',$phimh->slug)}}" title="{{$phimh->title}}">
                                     <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$phimh->image)}}" alt="Image Phim" title="Image Phim"></figure>
-                                    <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>{{$phimh->subtitle}}</span> <div class="icon_overlay"></div>
+                                    <span class="status">
+                                         @if($phimh->resolution==0)
+                                            HD
+                                        @elseif($phimh->resolution==1)
+                                            SD
+                                        @elseif($phimh->resolution==2)
+                                            CAM
+                                        @elseif($phimh->resolution==3)
+                                            Full HD
+                                        @else
+                                            Trailer
+                                        @endif
+                                    </span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>
+                                         @if($phimh->subtitle==1)
+                                            Thuyết minh
+                                            @if($phimh->season!=0)
+                                                - Season {{$phimh->season}}
+                                            @endif
+
+                                        @else
+                                            Phụ đề
+                                            @if($phimh->season!=0)
+                                                -Season {{$phimh->season}}
+                                            @endif
+                                        @endif
+                                    </span> <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
                                         <div class="halim-post-title ">
                                             <p class="entry-title">{{$phimh->title}}</p>
