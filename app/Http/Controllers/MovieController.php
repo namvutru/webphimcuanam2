@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\Episode;
 use App\Models\Genre;
 use App\Models\Movie_Genre;
 use Illuminate\Http\Request;
@@ -209,9 +210,13 @@ class MovieController extends Controller
     {
         //
         $movie =Movie::find($id);
+        $listepisode = Episode::where('movie_id',$movie->id)->get();
         $movie_genre = Movie_Genre::with('movie','genre')->where('movie_id',$id)->get();
         foreach ($movie_genre as $key => $movi_gen){
             $movi_gen->delete();
+        }
+        foreach ($listepisode as $key => $episode){
+            $episode->delete();
         }
         if(file_exists('uploads/movie/'.$movie->image)){
             unlink('uploads/movie/'.$movie->image);

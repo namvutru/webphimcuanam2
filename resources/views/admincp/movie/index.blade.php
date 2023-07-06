@@ -23,7 +23,7 @@
                                 <th scope="col">Duration</th>
                                 <th scope="col">Slug</th>
                                 <th scope="col">Image</th>
-                                <th scope="col">Episode</th>
+                                <th scope="col">Sum Episode</th>
                                 <th scope="col">Tags</th>
 
                                 {{--                                <th scope="col">Description</th>--}}
@@ -53,7 +53,7 @@
                                     <td>{{$movi->duration}}</td>
                                     <td>{{$movi->slug}}</td>
                                     <td><img width="60"  src="{{asset('/uploads/movie/'.$movi->image)}}"/></td>
-                                    <td>{{$movi->episode}}
+                                    <td>{{$movi->sumepisode}}
                                     {{--                                    <td>{{$movi->description}}</td>--}}
                                     <td>{{$movi->tags}}</td>
                                     <td>{{$movi->category->title}}</td>

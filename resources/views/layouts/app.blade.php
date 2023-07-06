@@ -94,6 +94,20 @@
             @yield('content')
         </main>
     </div>
+    <script>
+        $('.select-movie').change(function (){
+            var id =$(this).val();
+            $.ajax({
+                url: "{{route('select-movie')}}",
+                method:'get',
+                data:{id:id},
+                success: function (data){
+                    $('#select-show-movie').html(data);
+                }
+            });
+
+        })
+    </script>
     <script type="text/javascript">
         $('.select-year').change(function(){
             var year = $(this).find(':selected').val();

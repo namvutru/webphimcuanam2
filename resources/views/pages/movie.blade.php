@@ -32,7 +32,7 @@
                             @if($movie->resolution!=4)
                             <div class="bwa-content">
                                 <div class="loader"></div>
-                                <a href="{{route('watch')}}" class="bwac-btn">
+                                <a href="{{route('watch',$movie->slug)}}" class="bwac-btn">
                                     <i class="fa fa-play"></i>
                                 </a>
                             </div>
@@ -73,7 +73,8 @@
                                 @if($movie->season!=0)
                                     <li class="list-info-group-item"><span>Phần</span> : {{$movie->season}}</li>
                                 @endif
-                                <li class="list-info-group-item"><span>Số tập</span> : {{$movie->episode}}</li>
+                                <li class="list-info-group-item"><span>Số tập</span> : {{$movie->sumepisode
+}}</li>
                                 <li class="list-info-group-item"><span>Thể loại</span> :
                                     @foreach($movie_genre as $key =>$movi_gen)
                                     <a href="{{route('genre',$movi_gen->genre->slug)}}" rel="tag">{{$movi_gen->genre->title}}</a>

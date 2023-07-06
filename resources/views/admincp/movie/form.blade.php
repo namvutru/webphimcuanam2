@@ -41,8 +41,8 @@
                                     <input type="file" name="image"  class="form-control-file"  >
                                 </div>
                                 <div class="form-group">
-                                    <label >Episode</label>
-                                    <input type="text" name="episode"   class="form-control" >
+                                    <label >Sum Episode</label>
+                                    <input type="text" name="sumepisode"   class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label id="description">Description</label>
@@ -145,8 +145,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label >Episode</label>
-                                    <input type="text" name="episode" value="{{$movie->episode}}" class="form-control" >
+                                    <label >SumEpisode</label>
+                                    <input type="text" name="sumepisode" value="{{$movie->sumepisode}}" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label id="description">Description</label>
