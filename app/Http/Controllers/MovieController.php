@@ -166,7 +166,7 @@ class MovieController extends Controller
         $movie->duration= $data['duration'];
         $movie->tags= $data['tags'];
         $movie->trailer= $data['trailer'];
-        $movie->episode= $data['episode'];
+        $movie->sumepisode= $data['sumepisode'];
         $movie->dateupdate = Carbon::now('Asia/Ho_Chi_Minh');
 
         $get_image = $request->file('image');

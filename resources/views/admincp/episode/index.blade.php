@@ -12,7 +12,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <a href="{{ route('movie.create')}}">Thêm phim</a>
+                        <a href="{{ route('episode.create')}}">Thêm tập phim</a>
 
                         <table class="table" id="tablephim">
                             <thead>

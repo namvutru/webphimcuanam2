@@ -20,12 +20,13 @@
         </div>
     </div>
     <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
+        
         <section id="content" class="test">
             <div class="clearfix wrap-content">
-
-                @foreach($list_episode as $key=>$epi)
-                    {!! $epi->linkphim !!}
-                @endforeach
+                <style type="text/css"> .ifame-phim iframe {width:100%; height:500px; } </style>
+                <div class="ifame-phim">
+                    {!! $episode->linkphim !!}
+                </div>
 {{--                <div class="button-watch">--}}
 {{--                    <ul class="halim-social-plugin col-xs-4 hidden-xs">--}}
 {{--                        <li class="fb-like" data-href="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></li>--}}
@@ -105,9 +106,16 @@
                             <div class="halim-server">
                                 <ul class="halim-list-eps">
                                     @foreach($list_episode as $key => $epi)
-                                        <a href="{{route('episode')}}"><li class="halim-episode"><span class="halim-btn halim-btn-2 active halim-info-1-1 box-shadow" data-post-id="37976" data-server="1" data-episode="1" data-position="first" data-embed="0" data-title="{{$movie->title}} - Tập {{$epi->episode}} - {{$movie->origintitle}} - vietsub + Thuyết Minh" data-h1="{{$movie->title}} - Tập {{$epi->episode}}">{{$epi->episode}}</span></li></a>
+                                        @if($episode->episode==$epi->episode)
+                                        <a href="{{url('/xem-phim/'.$movie->slug.'/tap-'.$epi->episode)}}"><li class="halim-episode"><span class="halim-btn halim-btn-2 active halim-info-1-1 box-shadow" data-post-id="37976" data-server="1" data-episode="1" data-position="first" data-embed="0" data-title="{{$movie->title}} - Tập {{$epi->episode}} - {{$movie->origintitle}} - vietsub + Thuyết Minh" data-h1="{{$movie->title}} - Tập {{$epi->episode}}">{{$epi->episode}}</span></li></a>
+                                        @else
+                                            <a href="{{url('/xem-phim/'.$movie->slug.'/tap-'.$epi->episode)}}"><li class="halim-episode"><span class="halim-btn halim-btn-2 halim-info-1-1 box-shadow" data-post-id="37976" data-server="1" data-episode="1" data-position="first" data-embed="0" data-title="{{$movie->title}} - Tập {{$epi->episode}} - {{$movie->origintitle}} - vietsub + Thuyết Minh" data-h1="{{$movie->title}} - Tập {{$epi->episode}}">{{$epi->episode}}</span></li></a>
+
+                                        @endif
                                     @endforeach
 {{--
+
+
 {{--                                    <a href="{{route('episode')}}"><li class="halim-episode"><span class="halim-btn halim-btn-2 halim-info-1-2 box-shadow" data-post-id="37976" data-server="1" data-episode="2" data-position="" data-embed="0" data-title="Xem phim Tôi Và Chúng Ta Ở Bên Nhau - Tập 2 - Be Together - vietsub + Thuyết Minh" data-h1="Tôi Và Chúng Ta Ở Bên Nhau - tập 2">2</span></li></a>--}}
 
                                 </ul>
